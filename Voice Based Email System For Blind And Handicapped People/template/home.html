@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Welcome !-#-!
+{% endblock %}
+
+{% block lay %}
+ <body onclick = "SendPostRequestHome(event)" id="btn">
+<section id="" class="text-center" >
+    <div>
+      <h1 data-aos="zoom-in" class="text-white">Welcome To Our System</h1>
+<style>
+    #hero h2 {
+     font-size: 24px;
+            }
+</style>
+
+      <h2 data-aos="fade-up" class="text-white">Our Team:</h2>
+      <h2 data-aos="zoom-in" class="text-white"><span class="text-success">Khizar</span> Habib Bagban</h2>
+      <h2 data-aos="zoom-in" class="text-white"><span class="text-success">Aniket</span> Somnath Bali</h2>
+      <h2 data-aos="zoom-in" class="text-white"><span class="text-success">Akash</span> Shendge</h2>
+        <a data-aos="zoom-in"  href="{% url 'login' %}" class="btn btn-success btn-lg rounded-pill">Get Started</a>
+      </div>
+<!--
+
+	function SendPostRequestHome(event){
+		$.ajax({
+        url: "{% url 'home' %}",
+        method:"POST",
+        data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+
+			if(data.result == 'success'){
+				window.location = "{% url 'login' %}";
+			}
+			else if(data.result == 'failure'){
+				window.location = "{% url 'home' %}";
+			}
+        }
+    });
+	}
+-   ->
+    </section>
+ </body>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Home !__!
+{% endblock %}
+
+{% block lay %}
+<body onmousedown = "SendPostRequestInbox(event)">
+        <div class="p-5 mb-2 container" class="align-top">
+
+        <h1 data-aos="zoom-in" class="p-3 mb-2 bg-success text-white btn-lg rounded-pill"><b>INBOX PAGE</b><span><p> </p><h3>What would you like to do?</h3></span></h1><br><br>
+
+            <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+                <a data-aos="zoom-in"  href="#" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">UnRead</a><br>
+           <a data-aos="zoom-in"  href="#" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Search</a><br>
+            <a data-aos="zoom-in"  href="{% url 'menu' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Back</a>
+</div>
+</div>
+<script>
+	function SendPostRequestInbox(event){
+		$.ajax({
+        url: "{% url 'inbox' %}",
+        method: 'POST',
+        data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+			if(data.result == 'success'){
+				window.location = "{% url 'menu' %}";
+			}
+			else if(data.result == 'logout'){
+				window.location = "{% url 'login' %}";
+			}
+        }
+    });
+	}
+	</script>
+{% endblock %}

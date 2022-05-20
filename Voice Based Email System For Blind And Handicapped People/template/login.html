@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+MENU !__!
+{% endblock %}
+
+{% block lay %}
+<style>
+
+.loader {
+   position: relative;
+   top:80px;
+  left: 150px;
+
+
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #50C878; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<body onclick = "SendPostRequestLogin(event)">
+        <div class="p-5 mb-2 container" class="align-top" >
+
+            <h1 data-aos="zoom-in" class="p-3 mb-2 bg-success text-white rounded-pill"><b> LOGIN </b><span><p> </p><h3>Please Provide YOur Credentials?</h3></span></h1><br><br>
+                <div class="btn-group-vertical" >
+
+                <div class="loader"></div>
+                    
+                    <a data-aos="zoom-in"  href="{% url 'compose' %}" class="btn btn-success btn-lg rounded-pill " style=" pointer-events: none;">Username</a><br>
+
+                <a data-aos="zoom-in"  href="{% url 'inbox' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Password</a><br>
+
+            </div>
+
+<script>
+	function SendPostRequestLogin(event){
+		$.ajax({
+        url: "{% url 'login' %}",
+        method:"POST",
+        data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+
+			if(data.result == 'success'){
+				window.location = "{% url 'menu' %}";
+			}
+			else if(data.result == 'failure'){
+				window.location = "{% url 'login' %}";
+			}
+        }
+    });
+	}
+
+</script>
+</body>
+{% endblock %}

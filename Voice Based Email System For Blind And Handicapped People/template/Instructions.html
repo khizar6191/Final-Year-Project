@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+Welcome !-#-!
+{% endblock %}
+
+{% block lay %}
+ <body onclick = "SendPostRequestHome(event)" id="btn">
+<section id="" class="text-center" >
+    <div>
+      <h1 data-aos="zoom-in" class="text-white">Instructions</h1>
+<style>
+    #hero h2 {
+     font-size: 24px;
+            }
+            a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+</style>
+        <div>
+      <h2 data-aos="fade-up" class="text-white">Step 1 : Login To Your Gmail And Give Permission To IMAP Server As Shown Below<br>
+          Gmail Settings > Forwarding/POPIMAP > Enable IMAP > Save Changes</h2>
+      </div>
+        <br>
+        <div>
+        <h2 data-aos="fade-up" class="text-white">Step 2 : Go To Link Shown Below :<br>
+          <a href="#" class="text-lowercase">https://myaccount.google.com/u/0/security?hl=en</a><br>Then Go to Less Secure Apps And Allow the given permission</h2>
+        </div>
+        <div>
+        <h2 data-aos="fade-up" class="text-white">Warning : Kindly Use Headphones For Better Experience !<br>
+          </div>
+
+            <a data-aos="zoom-in"  href="{% url 'home' %}" class="btn btn-success btn-lg rounded-pill">Get Started</a>
+
+    </div>
+    </section>
+
+ </body>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+MENU !__!
+{% endblock %}
+
+{% block lay %}
+
+<body onmousedown = "SendPostRequestMenu(event)">
+        <div class="p-5 mb-2 container" class="align-top" >
+
+            <h1 data-aos="zoom-in" class="p-3 mb-2 bg-success text-white rounded-pill"><b> OPTIONS </b><span><p> </p><h3>What would you like to do?</h3></span></h1><br><br>
+
+            <div class="btn-group-vertical" >
+
+                <a data-aos="zoom-in"  href="{% url 'compose' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Compose</a><br>
+                <a data-aos="zoom-in"  href="{% url 'inbox' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Inbox</a><br>
+                <a data-aos="zoom-in"  href="{% url 'sent' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">Sent</a><br>
+                <a data-aos="zoom-in"  href="{% url 'trash' %}" class="btn btn-success btn-lg rounded-pill"style=" pointer-events: none;">TrashBox</a>
+
+            </div>
+
+            </div>
+
+<script>
+	function SendPostRequestMenu(event){
+		$.ajax({
+        url: "{% url 'menu' %}",
+        method: 'POST',
+        data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+			if(data.result == 'compose'){
+				window.location = "{% url 'compose' %}";
+			}
+			else if(data.result == 'sent'){
+				window.location = "{% url 'sent' %}";
+			}
+			else if(data.result == 'inbox'){
+				window.location = "{% url 'inbox' %}";
+			}
+			else if(data.result == 'trash'){
+				window.location = "{% url 'trash' %}";
+			}
+			else if(data.result == 'logout'){
+				window.location = "{% url 'login' %}";
+			}
+			else if(data.result == 'failure'){
+				window.location = "{% url 'menu' %}";
+			}
+        }
+    });
+	}
+</script>
+<!-- 'back'== failure-->
+</body>
+{% endblock %}
